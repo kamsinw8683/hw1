@@ -16,8 +16,33 @@ the function below should be the only one in this file.
 
 void split(Node*& in, Node*& odds, Node*& evens)
 {
-  /* Add code here */
-// WRITE YOUR CODE HERE
+  if (in == nullptr) {
+        if (evens != nullptr) evens->next = nullptr;
+        if (odds != nullptr) odds->next = nullptr;
+        return;
+    }
+
+    Node* next = in->next; // used to traverse linked list in
+
+    if (in->value % 2 == 0) {
+        if (evens == nullptr) {
+            evens = in;
+            split(next, odds, evens->next);
+        } else {
+            evens->next = in;
+            split(next, odds, evens->next);
+        }
+    } else {
+        if (odds == nullptr) {
+            odds = in;
+            split(next, odds->next, evens);
+        } else {
+            odds->next = in;
+            split(next, odds->next, evens);
+        }
+    }
+
+    in = nullptr;
 }
 
 /* If you needed a helper function, write it here */
