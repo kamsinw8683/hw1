@@ -113,6 +113,7 @@ void testMixedList() {
     
     freeList(odds);
     freeList(evens);
+    freelist(in);
     std::cout << "Mixed list test passed" << std::endl;
 }
 
