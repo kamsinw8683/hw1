@@ -31,6 +31,14 @@ bool verifyList(Node* list, int expected[], int size) {
     }
     return list == nullptr;
 }
+void printList(Node*list, int size)
+{
+    for(int i =0; i < size; i++)
+    {
+        std::cout << list->value << std::endl;
+        list = list->next;
+    }
+}
 
 // Helper function to free memory
 void freeList(Node* list) {
@@ -97,9 +105,9 @@ void testMixedList() {
     
     assert(in == nullptr);
     
-    int expectedOdds[] = {9, 7, 5, 3, 1};
-    int expectedEvens[] = {10, 8, 6, 4, 2};
-    
+    int expectedOdds[] = {1, 3, 5, 7, 9};
+    int expectedEvens[] = {2, 4, 6, 8, 10};
+    printList(evens,5);
     assert(verifyList(odds, expectedOdds, 5));
     assert(verifyList(evens, expectedEvens, 5));
     

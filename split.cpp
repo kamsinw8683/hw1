@@ -12,24 +12,30 @@ the function below should be the only one in this file.
 
 #include "split.h"
 
-/* Add a prototype for a helper function here if you need */
-
-void split(Node*& in, Node*& odds, Node*& evens)
-{
-  if (in == nullptr) {
-        odds->next == nullptr;
-        evens->next == nullptr;
+void split(Node*& in, Node*& odds, Node*& evens) {
+      if (in == nullptr) {
+        if (evens != nullptr) evens->next = nullptr;
+        if (odds != nullptr) odds->next = nullptr;
         return;
     }
-
-   if(in->value %2 ==0){
-    evens = in;
-    return split(in->next, odds, in->next);
-   }
-   else{
-    odds = in;
-    return split(in->next, in->next, evens);
-   }
-   in = nullptr;
+    Node* next = in->next; // used to traverse linked list in
+    if (in->value % 2 == 0) {
+        if (evens == nullptr) {
+            evens = in;
+            split(next, odds, evens->next);
+        } else {
+            evens->next = in;
+            split(next, odds, evens->next);
+        }
+    } else {
+        if (odds == nullptr) {
+            odds = in;
+            split(next, odds->next, evens);
+        } else {
+            odds->next = in;
+            split(next, odds->next, evens);
+        }
+    }
+    in = nullptr;
 }
-/* If you needed a helper function, write it here */
+
