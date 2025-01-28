@@ -11,31 +11,35 @@ the function below should be the only one in this file.
 */
 
 #include "split.h"
-
+#include <cstddef>
 void split(Node*& in, Node*& odds, Node*& evens) {
-      if (in == nullptr) {
-        if (evens != nullptr) evens->next = nullptr;
-        if (odds != nullptr) odds->next = nullptr;
+   if(in == NULL)
+    {
         return;
     }
-    Node* next = in->next; // used to traverse linked list in
-    if (in->value % 2 == 0) {
-        if (evens == nullptr) {
-            evens = in;
-            split(next, odds, evens->next);
-        } else {
-            evens->next = in;
-            split(next, odds, evens->next);
-        }
-    } else {
-        if (odds == nullptr) {
-            odds = in;
-            split(next, odds->next, evens);
-        } else {
-            odds->next = in;
-            split(next, odds->next, evens);
-        }
+    Node* curr = in;
+    in = in->next;
+    curr->next = NULL;
+    if((curr->value % 2) != 0)
+    {
+        addToTail(odds, curr);
     }
-    in = nullptr;
+    else
+    {
+        addToTail(evens, curr);
+    }
+    split(in, odds, evens);
+  }
+void addToTail(Node*& headRef, Node* node)
+{
+    if(headRef == NULL)
+    {
+        headRef = node;
+        node->next = NULL;
+    }
+    else
+    {
+        addToTail(headRef->next, node);
+    }
 }
 
