@@ -25,16 +25,7 @@ size_t ULListStr::size() const
 }
 
 // WRITE YOUR CODE HERE
-/**
- * push_back(val):
- *   1. If the list is empty, allocate a new Item, set head_ and tail_ to it,
- *      and place val in val[0], adjusting first=0, last=1.
- *   2. Else if tail_ has space (tail_->last < ARRSIZE), simply place val in
- *      tail_->val[ tail_->last ] and tail_->last++.
- *   3. Else (no space in tail_), allocate a new Item and link it at the end.
- *      Put val in new tail_'s val[0], first=0, last=1.
- *   4. size_++ in each case.
- */
+
 void ULListStr::push_back(const std::string& val){
   if(empty()) {
     Item* newItem = new Item();
