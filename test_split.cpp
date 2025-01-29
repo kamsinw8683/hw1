@@ -113,11 +113,8 @@ void testMixedList() {
     
     freeList(odds);
     freeList(evens);
-<<<<<<< HEAD
-    freelist(in);
-=======
+
     freeList(in);
->>>>>>> 93e997d (feat: Completed ulliststr)
     std::cout << "Mixed list test passed" << std::endl;
 }
 
